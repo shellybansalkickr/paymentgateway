@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+
+<form name="payment_gateway" action="javascript:void(0);">
+    <div id="formdiv" class="container">
+        <div class="row row-no-gutters" style="padding:50px;">
+            <p><b>Payment Information</b></p>
+            <div class="row row-no-gutters" >
+                <div class="col-sm-8"><img width="230" height="27" src="auth.net.jpeg"  /></div>
+                <div class="col-sm-4"><img width="260" height="50" src="payment.jpeg"  /></div>
+
+            </div>
+            <div id='isPaymentDiv'style="
+					height:320px;
+					padding: 40px;
+	   				background:rgb(217, 217, 217);
+					border-radius: 50px;">
+                <p><b>Secure Payment Form</b>
+                    <img src="secure.jpg" width="50" height="60" style="border-radius: 50px; float:right"></p>
+                <label for="cardno"><b>Card number</b></label>
+                <input type="text" minlength="15" onfocusout="minLengthcardNo()"maxlength="25"placeholder="Number as it appears on card" name="cardno" id="cardno" required>
+                <span class="error"><p id=lengthValidation></p></span>
+                <div class="col-sm-5">
+                    <label for="expdate"><b>Expiration date</b></label>
+                    <input type="month"   placeholder="MM/YY" name="expdate" id="expdate" required >
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <label for="cvv"><b>Security code</b></label>
+                    <input type="text" placeholder="cvv" name="cvv" id="cvv" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" minlength="3" maxlength="4" required>
+                </div>
+            </div>
+
+            <div class="row row-no-gutters" style="padding:50px;">
+                <p><b>Billing address</b><br>
+                    All fields are required unless they're explicitly marked as optional.</p>
+                <label for="country"><b>Country</b></label>
+                <select name="country" id="country" onchange="ChooseCurrency(this)">
+                    <option value="UK" selected>United Kingdom (UK)</option>
+                    <option value="US">United States of America (USA)</option>
+                </select>
+
+                <div class="col-sm-6">
+                    <label for="cusName"><b>Name</b></label>
+                    <input type="text" placeholder="Name as it appears on card" name="cusName" id="cusName" required>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                    <label for="phone"><b>Phone</b></label>
+                    <input type="text" placeholder="Mobile number" name="phone" id="phone" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" maxlength="10" required  >
+                </div>
+                <label for="emailId"><b>Email Id</b></label>
+                <input type="email" placeholder="abc@xyz.com" name="emailId" id="emailId" required>
+                <label for="address"><b>Address</b></label>
+                <input type="text" placeholder="Street address,apartment,suite,floor,etc" name="address" id="address" required>
+                <div class="col-sm-8"><input type="text" placeholder="City" name="city" id="city" required></div>
+                <div class="col-sm-4"><input type="text" placeholder="Postal Code" name="pcode" id="pcode"  required></div>
+                <input type="text" placeholder="State" name="state" id="state" required>
+                <label for="amount" id="currency"><b>Amount (GMP)</b></label>
+                <input type="text" placeholder="0" name="amount" id="amount"   onkeypress="return (isAmountKey(event))" onfocusout="changePayValue(this)" required >
+                <span class="error"><p id=amountValidation></p></span>
+                <button type="submit" class="registerbtn" id="pay" onclick="onFormSubmit()" >Pay</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div style="display:none" id="loader"></div>
+<div style="display:none;" id="successDiv" class="animate-bottom">
+    <div class="jumbotron text-center">
+        <p class="lead" id="successText"></p>
+    </div>
+</div>
+</div>
+<footer id="footer" class="footer">
+    <p><b>Your payment details will be securely transmitted and processed using 128/256-bit encryption.</b><img width="90" height="60" src="dss.jpeg">
+
+</footer>
+
+</body>
+</html>

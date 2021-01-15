@@ -1,6 +1,8 @@
 package com.kickr.gateway.transactions;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "transactions")
@@ -20,6 +22,7 @@ public class Transactions {
     private String country;
     private String status;
     private Float amount;
+    private Timestamp transactionTime;
 
     public Transactions() {
     }
@@ -113,7 +116,7 @@ public class Transactions {
     }
 
     public Transactions(Long id, String cardNumber, int cvv, String expDate, String mobile, String email, String address,
-                        String custName, String country, String status, Float amount) {
+                        String custName, String country, String status, Float amount, Timestamp transactionTime) {
         this.id = id;
         this.cardNumber = cardNumber;
         this.cvv = cvv;
@@ -125,5 +128,45 @@ public class Transactions {
         this.country = country;
         this.status = status;
         this.amount = amount;
+        this.transactionTime=transactionTime;
+    }
+
+    public Transactions(Long id, String status, Float amount, Timestamp transactionTime,String country) {
+        this.id = id;
+        this.status = status;
+        this.amount = amount;
+        this.transactionTime = transactionTime;
+        this.country=country;
+    }
+
+    public Transactions(String cardNumber, int cvv, String expDate, String mobile, String email, String address, String custName, String country, Float amount) {
+        this.cardNumber = cardNumber;
+        this.cvv = cvv;
+        this.expDate = expDate;
+        this.mobile = mobile;
+        this.email = email;
+        this.address = address;
+        this.custName = custName;
+        this.country = country;
+        this.amount = amount;
+    }
+
+    public Timestamp getTransactionTime() {
+
+        return transactionTime;
+    }
+
+    public void setTransactionTime(Timestamp transactionTime) {
+        this.transactionTime = transactionTime;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id=AWB"+ id +
+                ", status='" + status + '\'' +
+                ", amount=" + amount +
+                ", transactionTime=" + transactionTime +
+                '}';
     }
 }
