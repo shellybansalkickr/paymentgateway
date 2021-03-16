@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form name="payment_gateway" action="javascript:void(0);">
+<form name="payment_gateway">
     <div id="formdiv" class="container">
         <div class="row row-no-gutters" style="padding:50px;">
             <p><b>Payment Information</b></p>
@@ -67,7 +67,7 @@
                 <label for="amount" id="currency"><b>Amount (GMP)</b></label>
                 <input type="text" placeholder="0" name="amount" id="amount"   onkeypress="return (isAmountKey(event))" onfocusout="changePayValue(this)" required >
                 <span class="error"><p id=amountValidation></p></span>
-                <button type="submit" class="registerbtn" id="pay" onclick="onFormSubmit()" >Pay</button>
+                <button type="submit" class="registerbtn" id="pay" formaction="javascript:onFormSubmit()" >Pay</button>
             </div>
         </div>
     </div>
